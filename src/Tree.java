@@ -158,6 +158,34 @@ public class Tree {
         return check;
     }
 
+    public void levelOrderUsingNull(Node root){
+        Queue<Node> queue = new LinkedList<>();
+
+        if(root == null)return;
+
+        queue.add(root);
+        queue.add(null);
+
+        while(!queue.isEmpty()){
+            Node currNode = queue.poll();
+
+            if(currNode == null){
+                System.out.println();
+                if(!queue.isEmpty()){
+                    queue.add(null);
+                }
+            }else{
+                System.out.print(currNode.val+" ");
+                // add child to queue
+                for(Node child: currNode.children){
+                    queue.add(child);
+                }
+            }
+        }
+    }
+
+    
+
     public static void main(String[] args) {
 
         Node root = new Node(10);
@@ -182,6 +210,8 @@ public class Tree {
         // tree.displayRecursive(root);
         // tree.displayIterative(root);
         // System.out.println(tree.findSize(root));
-        System.out.println(tree.findSizeIterative(root));
+        // System.out.println(tree.findSizeIterative(root));
+
+        tree.levelOrderUsingNull(root);
     }
 }
