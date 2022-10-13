@@ -20,6 +20,21 @@ public class Tree {
         }
     }
 
+    static class BTNode{
+        int val;
+        Node left;
+        Node right;
+
+        public BTNode(int val){
+            this.val = val;
+        }
+        public BTNode(int val, Node left, Node right){
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
 
     public void displayRecursive(Node root) {
         // for (Node child : root.children) {
