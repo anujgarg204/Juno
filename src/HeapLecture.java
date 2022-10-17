@@ -51,6 +51,28 @@ static class Heap{
         }
     }
 
+    private void downHeapify(int i, int[] arr) {
+        int largest = i;
+        int l = 2*i;
+        int r = 2*i+1;
+
+        if(l < index && arr[l] > arr[largest]){
+            largest = l;
+        }
+
+        if(r < index && arr[r] > arr[largest]){
+            largest = r;
+        }
+
+        if(largest != i){
+            int temp = arr[largest];
+            arr[largest] = arr[i];
+            arr[i] = temp;
+
+            downHeapify(largest, arr);
+        }
+    }
+
     public void upheapify(int i){
         if(i < 1)return;
         
@@ -61,6 +83,15 @@ static class Heap{
             arr[i] = arr[parent];
             arr[parent] = temp;
             upheapify(parent);
+        }
+    }
+
+    public void heapSort(int[] arr) {
+        // loop from behind the array
+        // downheapify every element
+
+        for(int i= arr.length-1; i>= 0; i--){
+            downHeapify(i,arr);
         }
     }
 
@@ -82,7 +113,17 @@ public static void main(String[] args) {
     heap.delete();
     heap.delete();
 
-    System.out.println(Arrays.toString(heap.arr));
+    // 24 15 2 13 56 83 9
+    // heap sort this
+
+    int[] arr = {24, 15, 2, 13, 56, 83, 9};
+    heap.heapSort(arr);
+
+
+    System.out.println(Arrays.toString(arr));
+
+
+    // System.out.println(Arrays.toString(heap.arr));
 }   
 
 
